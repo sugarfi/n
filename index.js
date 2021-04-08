@@ -1,5 +1,9 @@
 if (/#.*?$/.test(window.location.href)) {
-    const text = atob(window.location.href.split('#')[1]);
+    let [ label, ...text ] = atob(window.location.href.split('#')[1]).split(':');
+    text = text.join(':');
+    document.querySelectorAll('.label').forEach((e) => {
+        e.textContent = label;
+    });
     document.getElementById('text').textContent = text;
     document.getElementById('view').style.display = 'flex';
 } else {
@@ -7,7 +11,7 @@ if (/#.*?$/.test(window.location.href)) {
 }
 
 document.getElementById('submit').onclick = () => {
-    const text = btoa(document.getElementById('input').value);
+    const text = btoa(`${document.getElementById('label').value}:${document.getElementById('input').value}`);
     const link = `${window.location.protocol}//${window.location.hostname}/#${text}`;
     document.getElementById('link').value = link;
 };
