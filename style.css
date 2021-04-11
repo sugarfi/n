@@ -40,6 +40,10 @@ img {
     width: 55vw;
 }
 
+#view p {
+    white-space: pre-line;
+}
+
 textarea {
     max-width: 100%;
 }
